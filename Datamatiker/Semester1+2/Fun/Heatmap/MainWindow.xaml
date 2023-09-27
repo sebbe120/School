@@ -1,0 +1,23 @@
+﻿<Window x:Class="Heatmap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Heatmap"
+        mc:Ignorable="d"
+        Title="Random Route Heatmap"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Height="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}" 
+        Width="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}">
+
+    <Grid>
+        <TextBox x:Name="txtPoints" Text="Data" FontSize="30" Margin="0,0,0,0" IsReadOnly="True" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnRestart" Content="New Route" Width="100" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btnRestart_Click" Grid.Column="1"/>
+        <Button x:Name="btnNewPoint" Content="New Point" Width="80" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="915,0" Click="btnNewPoint_Click"/>
+        <TextBox x:Name="txtPointX" Text="x" FontSize="20" Width="80" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+        <TextBox x:Name="txtPointY" Text="y" FontSize="20" Width="80" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Canvas x:Name="myCanvas"/>
+    </Grid>
+
+</Window>

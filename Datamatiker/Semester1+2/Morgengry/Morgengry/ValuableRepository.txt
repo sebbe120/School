@@ -1,0 +1,8 @@
+Book;No. B1;;0
+Amulet;No. A1;;medium
+Book;No. B2;Falling in Love with Yourself;0
+Amulet;No. A3;Modern;low
+Course;Basis kursus;0
+Book;No. B3;Spirits in the Night;123,55
+Amulet;No. A2;;high
+Course;Kursus 2;128

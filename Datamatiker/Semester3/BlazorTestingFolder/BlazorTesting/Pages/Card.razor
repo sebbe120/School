@@ -1,0 +1,54 @@
+﻿<div class="col" style="min-width: 33%; max-width:33%;">
+    <div class="card m-3" style="max-height: 800px; border-color: black">
+        <div class="card-header">
+            <h3>@DisplayRentalPost.Title</h3>
+        </div>
+
+        <div class="card-body">
+            <p class="card-text">
+                <h3>@DisplayRentalPost.Category</h3>
+
+                <h2>@DisplayRentalPost.Price kr.</h2>
+                Deposit: @DisplayRentalPost.Deposit kr.
+                <br />
+                <br />
+
+                @DisplayRentalPost.Description
+                <br />
+                <br />
+
+                Available from: @DisplayRentalPost.AvailableDateFrom.ToString("dd/MM/yyyy")
+                - @DisplayRentalPost.AvailableDateTo.Date.ToString("dd/MM/yyyy")
+            </p>
+
+            <img class="card-img-top" style="max-height: 340px" src="@imgSrc" alt="Image could not load!" />
+        </div>
+
+        <div class="card-footer">
+            <h3 style="text-align: right">@DisplayRentalPost.PostedDate</h3>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Makes the paragraph indent a little
+    public string paragraphAlign = "margin-left: 3%";
+    public string imgSrc { get; set; } = "/Images/placeholder.png";
+
+    [Parameter]
+    public string Category
+    {
+        set { imgSrc = $"/Images/{value}.jpg"; }
+    }
+
+    [Parameter]
+    public RentalPost DisplayRentalPost { get; set; } =
+    new()
+        {
+            Title = "No Title",
+            Description = "No Description",
+            Price = 0,
+            Deposit = 0,
+            Category = "No category",
+        };
+}

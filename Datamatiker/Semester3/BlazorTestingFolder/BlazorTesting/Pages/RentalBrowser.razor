@@ -1,0 +1,92 @@
+﻿@page "/rental"
+
+<div class="container">
+    <div class="row">
+        @foreach (RentalPost rentalPost in RentalPosts)
+        {
+            <Card DisplayRentalPost="@rentalPost" Category="@rentalPost.Category" />
+        }
+    </div>
+</div>
+
+
+@code {
+    // Template list for display
+    // Load from database
+    public List<RentalPost> RentalPosts = new()
+        {
+            new RentalPost()
+            {
+                Title = "My rental Item",
+                Description = "Jonatan kan godt lide at spise djungelvrael, men han får så dårlig mave af det :(",
+                Price = 100,
+                Deposit = 400,
+                Category = "Surfboard"
+            },
+
+            new RentalPost()
+            {
+                Title = "Second rental Item",
+                Description = "Jonatan har lige været ude at skide, så nu kan han spise flere djungelvrael :)",
+                Price = 300,
+                Deposit = 100,
+                Category = "Paddleboard"
+            },
+
+            new RentalPost()
+            {
+                Title = "3rd rental Item",
+                Description = "Jonatan skal ud og holde rygepause nu, hvorefter han tager et slag Hearthstone ;)",
+                Price = 300,
+                Deposit = 100,
+                Category = "Kiteboard"
+            },
+
+            new RentalPost()
+            {
+                Title = "My rental Item",
+                Description = "Jonatan kan godt lide at spise djungelvrael, men han får så dårlig mave af det :(",
+                Price = 100,
+                Deposit = 400,
+                Category = "Surfboard"
+            },
+
+            new RentalPost()
+            {
+                Title = "Second rental Item",
+                Description = "Jonatan har lige været ude at skide, så nu kan han spise flere djungelvrael :)",
+                Price = 300,
+                Deposit = 100,
+                Category = "Paddleboard"
+            },
+
+            new RentalPost()
+            {
+                Title = "3rd rental Item",
+                Description = "Jonatan skal ud og holde rygepause nu, hvorefter han tager et slag Hearthstone ;)",
+                Price = 300,
+                Deposit = 100,
+                Category = "Kiteboard"
+            }
+        };
+
+    // Is the uploaded image stored as a string
+    string imgUrl = "/Images/placeholder.png";
+
+    /* To Do:
+    * Make the Rental Post Creator look nicer / more intuitive
+    * Create a simple txt file persistence system, for saving and loading Rental Posts
+    * Fix the Image thing (Can't use csv file for the pictures since ByteArrays are not nice to save)
+    * Load the posts for the RentalBrowser with Async like in FetchData
+    * Add sorting functionality
+    * Evt. features with login (low priority)
+    */
+
+
+
+     /* Done:
+     * Create a card to use for displaying Rental Posts (when browsing)
+     * Make dummy data for testing the RentalBrowser
+     * Create the layout / grid for displaying the Rental Posts
+    */
+}

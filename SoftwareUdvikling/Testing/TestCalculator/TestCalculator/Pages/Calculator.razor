@@ -1,0 +1,165 @@
+﻿@page "/calculator"
+
+<h1>Basic Calculator Demo Using Blazor</h1>
+<hr />
+<div>
+    <div class="row">
+        <div class="col-md-3">
+            <p>First Number</p>
+        </div>
+        <div class="col-md-4">
+            <input placeholder="Enter First Number" @bind="@num1" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <p>Second Number</p>
+        </div>
+        <div class="col-md-4">
+            <input placeholder="Enter Second Number" @bind="@num2" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <p>Result</p>
+        </div>
+        <div class="col-md-4">
+            <input readonly @bind="@finalresult" />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            <button @onclick="AddNumbers" class="btn btn-light">Add (+)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="SubtractNumbers" class="btn btn-primary">Subtract (−)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="MultiplyNumbers" class="btn btn-success ">Multiply (X)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="DivideNumbers" class="btn btn-info">Divide (/)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="NthRoot" class="btn btn-light">Nth Root (&#8730;)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="Percentage" class="btn btn-light">Percentage (%)</button>
+        </div>
+        <div class="col-md-2">
+            <button @onclick="Exponent" class="btn btn-light">Exponent (exp)</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    public string num1;
+    public string num2;
+    public string finalresult;
+    public void AddNumbers()
+    {
+        try
+        {
+            finalresult = (Convert.ToDouble(num1) + Convert.ToDouble(num2)).ToString();
+        }
+        catch (Exception)
+        {
+            
+            return;
+        }
+    }
+    public void SubtractNumbers()
+    {
+        try
+        {
+            finalresult = (Convert.ToDouble(num1) - Convert.ToDouble(num2)).ToString();
+        }
+        catch (Exception)
+        {
+
+            return;
+        }
+    }
+    public void MultiplyNumbers()
+    {
+        try
+        {
+            finalresult = (Convert.ToDouble(num1) * Convert.ToDouble(num2)).ToString();
+        }
+        catch (Exception)
+        {
+
+            return;
+        }
+    }
+    public void DivideNumbers()
+    {        
+        try
+        {
+            if (Convert.ToDouble(num2) != 0)
+            {
+                finalresult = (Convert.ToDouble(num1) / Convert.ToDouble(num2)).ToString();
+            }
+            else
+            {
+                finalresult = "Cannot Divide by Zero";
+            }
+        }
+        catch (Exception)
+        {
+
+            return;
+        }
+    }
+
+    public void NthRoot()
+    {
+        try
+        {
+            if (Convert.ToDouble(num2) > 1 && Convert.ToDouble(num1) < 0)
+            {
+                return;
+            }
+
+            if (Convert.ToDouble(num2) != 0)
+            {
+                finalresult = Math.Pow(Convert.ToDouble(num1), 1.0 / Convert.ToDouble(num2)).ToString();
+            }
+            else
+            {
+                finalresult = "Cannot Take the Zeroth Root";
+            }
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+
+    public void Percentage()
+    {
+        try
+        {
+            finalresult = (Convert.ToDouble(num1) * (Convert.ToDouble(num2) / 100)).ToString();
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+
+    public void Exponent()
+    {
+        try
+        {
+            finalresult = Math.Pow(Convert.ToDouble(num1), Convert.ToDouble(num2)).ToString();
+        }
+        catch (Exception)
+        {
+            return;
+        }
+    }
+}

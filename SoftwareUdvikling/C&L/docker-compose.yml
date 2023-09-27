@@ -1,0 +1,41 @@
+# remember to create the images first from the backend / frontend Dockerfiles
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MARIADB_USER: 'example-user-kenneth'
+      MARIADB_PASSWORD: 'my_cool_secret'
+      MARIADB_ROOT_PASSWORD: 'my-secret-pw'
+      MARIADB_DATABASE: 'sample'
+    volumes:
+      - db:/var/lib/mysql
+
+  nodeFrontend:
+    image: frontend
+    ports:
+      - 80:80
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+    depends_on:
+      - db
+
+  nodeBackend:
+    image: backend
+    ports:
+      - 3000:3000
+    environment:
+        PORT: 3000
+        DB_HOSTNAME: db
+        DB_USERNAME: root
+        DB_PASSWORD: my-secret-pw
+        DB_DATABASE: sample
+    command: sh -c "npm run db:migrate && npm run db:seed && npm run start"
+    depends_on:
+      - db
+
+volumes:
+  db:
+    driver: local

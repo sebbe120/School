@@ -1,0 +1,44 @@
+﻿@page
+@{
+    ViewData["Title"] = "Portal";
+}
+
+<h2>
+    Welcome to NetLearner.org
+</h2>
+
+<div class="text-center">
+    <img id="logo" src="~/images/NetLearner-logo.png" class="img-fluid" alt="NetLearner Logo">
+</div>
+
+<div class="parent">
+    <div class="child">
+        <a href="https://wakeupandcode.com/netlearner-on-asp-net-core-3-1/">Blog Post</a>
+        |
+        <a href="https://github.com/shahedc/NetLearnerApp">Source Code</a>
+    </div>
+</div>
+
+
+<div class="text-center">
+    <img id="diagram" src="~/images/NetLearner-AspNetCore31-Architecture.png" class="img-fluid" alt="NetLearner Architecture Diagram" />
+</div>
+
+<style type="text/css">
+
+    #diagram {
+        filter: drop-shadow(2px 2px 5px black);
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .parent {
+        display: flex;
+    }
+
+    .child {
+        margin: auto;
+    }
+</style>

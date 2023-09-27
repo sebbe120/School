@@ -1,0 +1,94 @@
+﻿@page "/rentalpost"
+
+<PageTitle>Your Rental Post</PageTitle>
+
+<h1>Rental</h1>
+
+<p>
+    @*The form that creates a RentalPost (Not implemented: sends it to another component for database storage)*@
+    <EditForm Model="@rentalPost" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        Choose a title for your rental item:
+        <br />
+        <InputText id="name" @bind-Value="rentalPost.Title" />
+        <br />
+
+        Choose a category for your rental item:
+        <br />
+        <select class="form-control" @bind="@rentalPost.Category" style="width:150px">
+            @foreach (var template in categories)
+            {
+                <option value=@template>@template</option>
+            }
+        </select>
+        <br />
+
+        Choose a price for your rental item (DKK):
+        <br />
+        <input type="number" @bind-value="rentalPost.Price" />
+        <br />
+
+        Choose an amount for your deposit (DKK):
+        <br />
+        <input type="number" @bind-value="rentalPost.Deposit" />
+        <br />
+
+        Write a description for your rental item:
+        <br />
+        <InputText id="name" @bind-Value="rentalPost.Description" />
+        <br />
+
+        Select a date for your rental post:
+        <br />
+        <input type="date" @bind="rentalPost.AvailableDateFrom" @bind:format="yyyy-MM-dd" />
+        <input type="date" @bind="rentalPost.AvailableDateTo" @bind:format="yyyy-MM-dd" />
+        <br />
+        <br />
+
+        Choose a picture for your post (Only supports PNG and JPG-like files):
+        <br />
+        <InputFile OnChange="OnInputFileChange" multiple />
+        <br />
+        <br />
+
+        <img src="@imgUrl" asp-append-version="true" width="500" height="500" />
+
+        <br />
+        <button type="submit">Submit</button>
+    </EditForm>
+</p>
+
+@code {
+    // Is the object that is created when the post is succesful
+    public RentalPost rentalPost = new();
+
+    // Available categories
+    List<string> categories = new()
+        {
+            "",
+            "Paddleboard",
+            "Surfboard",
+            "Kiteboard"
+        };
+
+    // Is called when the submit from the EditForm is succesful
+    private void HandleValidSubmit()
+    {
+        Console.WriteLine(rentalPost);
+    }
+
+    // Is the uploaded image stored as a string
+    string imgUrl = "/Images/placeholder.png";
+    // Takes the uploaded file and shows it as an image (does not check file types!)
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        IBrowserFile imgFile = e.File;
+        var buffers = new byte[imgFile.Size];
+        await imgFile.OpenReadStream().ReadAsync(buffers);
+        string imageType = imgFile.ContentType;
+        imgUrl = $"data:{imageType};base64,{Convert.ToBase64String(buffers)}";
+        rentalPost.Picture = buffers;
+    }
+}
