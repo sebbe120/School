@@ -1,0 +1,321 @@
+﻿@page "/plan"
+
+<PageTitle>Læringsplan</PageTitle>
+
+@if (planUnity == null && planProjectManagement == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col" style="width: 50%">
+            <h3>Læringsmål for Unity</h3>
+
+            <h4>Viden</h4>
+            <ul>
+                <li>Jeg har viden omkring hvordan et Unity projekt er opbygget</li>
+                <li>Jeg har viden omkring hvordan Unity's Editor virker, og hvilke redskaber der er tilgængelige</li>
+                <li>Jeg har viden omkring Unity's Plactic SCM system, og hvordan man kan arbejde sammen i et Unity projekt</li>
+                <li>Jeg har viden omkring forskelle mellem at skrive C# kode i et Unity projekt og et standard C# projekt</li>
+            </ul>
+
+            <h4>Færdigheder</h4>
+            <ul>
+                <li>Jeg kan oprette forbindelse til en API med Unity's eget Webrequest system</li>
+                <li>Jeg kan benytte mig af Coroutines</li>
+                <li>Jeg kan benytte mig af Unity's Physics Engine</li>
+                <li>Jeg kan benytte Unity's Input system til at få Game Objects til at bevæge sig</li>
+            </ul>
+
+            <h4>Kompetencer</h4>
+            <ul>
+                <li>Jeg kan lave og anvende Unity Scripts, og tilføje C# kode til Game Objects i både editoren og programatically</li>
+                <li>Jeg kan lave UI's i Unity og anvende de forskellige indbyggede UI elementer</li>
+                <li>Jeg kan skelne mellem fordele og ulemper ved at udvikle projekter i Unity</li>
+            </ul>
+            <br>
+            <h4>Kilder</h4>
+            Generelle sider jeg har brugt:
+            <ul>
+                <li>Unity documentation: https://docs.unity3d.com/Manual/index.html</li>
+                <li>Stackoverflow: https://stackoverflow.com/</li>
+            </ul>
+            Eksempler på videoer jeg har set eller Stackoverflow threads:
+            <ul>
+                <li>Tarodev: https://www.youtube.com/watch?v=K9uVHI645Pk</li>
+                <li>Fast Solution: https://www.youtube.com/watch?v=L-pOShqMydg</li>
+                <li>Jimmy Vegas: https://www.youtube.com/watch?v=mU6Euqcm9UM</li>
+                <li>https://answers.unity.com/questions/7555/how-do-i-call-a-function-in-another-gameobjects-sc.html</li>
+            </ul>
+        </div>
+        <div class="col" style="width: 50%">
+            <h3>Læringsmål for projektstyring</h3>
+
+            <h4>Viden</h4>
+            <ul>
+                <li>Jeg har viden omkring forskellige elementer omkring tidsestimering</li>
+                <li>Jeg har viden omkring SMART modellen</li>
+                <li>Jeg har viden omkring product alignment</li>
+            </ul>
+            <br>
+
+            <h4>Færdigheder</h4>
+            <ul>
+                <li>Jeg kan opsætte en mappestruktur i Google Drive til at organisere projektet og dets filer</li>
+                <li>Jeg kan opsætte en Decision Matrix til at beskrive flere løsningsmuligheder objektivt</li>
+                <li>Jeg kan lave en projektmodel med forskellige faser og planlægge projektets forløb</li>
+            </ul>
+            <br>
+
+            <h4>Kompetencer</h4>
+            <ul>
+                <li>Jeg kan udføre et onbordingsforløb, og kende til teknikker man kan bruge dertil</li>
+                <li>Jeg kan lave en teknologianalyse og anvende den til at vælge den bedste mulighed for en given situation</li>
+                <li>Jeg kan anvende en projektmodel og lave ændringer i den, i tilfælde af at problemer opstår</li>
+                <li>Jeg kan skelne mellem proaktive og reaktive teknikker</li>
+            </ul>
+            <h4>Kilder</h4>
+            <ul>
+                <li>Vores PO har meget erfaring med projektstyring og har altid gang i flere projekter ad gangen, så han har været min primære kilde for projektstyringsrelaterede emner</li>
+                <li>SMART modellen: https://altomledelse.dk/smart-modellen-til-maalsaetning/</li>
+                <li>"Strategisk Projektledelse" bog af Andreas Munk-Madsen</li>
+            </ul>
+        </div>
+    </div>
+
+    @*
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <h2>Legacy content</h2>
+
+        <h3>Ting jeg har lavet i  Unity</h3>
+
+        <table class="table" style="border: solid black 1px; table-layout: fixed">
+        <thead>
+        <tr>
+        <th style="@borderWidth; @headerColor">Mål</th>
+        <th style="@borderWidth; @headerColor">Teknik / Værktøj</th>
+        <th style="@borderWidth; @headerColor">Kriterier</th>
+        <th style="@borderWidth; @headerColor">Evaluering</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Goal goal in planUnity)
+        {
+        <tr>
+        <td style="@borderWidth; @rowColor">@goal.PlanGoal</td>
+        <td style="@borderWidth; @rowColor">@goal.Technique</td>
+        <td style="@borderWidth; @rowColor">@goal.Criteria</td>
+        <td style="@borderWidth; @rowColor">@goal.Evaluation</td>
+        </tr>
+        }
+        </tbody>
+        </table>
+
+        <br />
+
+        <h3>Ting jeg har lavet i projektstyring</h3>
+
+        <table class="table" style="border: solid black 1px; table-layout: fixed">
+        <thead>
+        <tr>
+        <th style="@borderWidth; @headerColor">Mål</th>
+        <th style="@borderWidth; @headerColor">Teknik / Værktøj</th>
+        <th style="@borderWidth; @headerColor">Kriterier</th>
+        <th style="@borderWidth; @headerColor">Evaluering</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Goal goal in planProjectManagement)
+        {
+        <tr>
+        <td style="@borderWidth; @rowColor">@goal.PlanGoal</td>
+        <td style="@borderWidth; @rowColor">@goal.Technique</td>
+        <td style="@borderWidth; @rowColor">@goal.Criteria</td>
+        <td style="@borderWidth; @rowColor">@goal.Evaluation</td>
+        </tr>
+        }
+        </tbody>
+        </table>*@
+}
+
+@code {
+    // https://github.com/dotnet/aspnetcore/issues/8393 for hashtag links to the specific item
+    string headerColor = "background-color: lightgrey";
+    string rowColor = "background-color: #f2f2f2"; // Lighter grey than the above lightgrey
+    string borderWidth = "border-width: 1px";
+    List<Goal>? planUnity;
+    List<Goal>? planProjectManagement;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Initialize the goal plan for Unity
+        planUnity = new();
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 1,
+                PlanGoal = "Basics for hvordan et Unity projekt er opbygget",
+                Technique = "Youtube tutorials, Unity Documentation",
+                Criteria = "Når jeg har god nok viden til at kunne forklare hvorden et Unity projekt er opbygget",
+                Evaluation = "Mangler at skrives på bloggen"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 2,
+                PlanGoal = "Lær hvordan man sætter et Unity projekt op til at kunne kontakte en API",
+                Technique = "https://www.youtube.com/watch?v=K9uVHI645Pk, https://docs.unity3d.com/ScriptReference/Networking.UnityWebRequest.html",
+                Criteria = "Når jeg kan sende requests fra et Unity projekt til vores API og behandle dem",
+                Evaluation = "Uge 11"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 3,
+                PlanGoal = "Lær omkring forskellige UI elementer i Unity",
+                Technique = "https://learn.unity.com/tutorial/ui-components#5c7f8528edbc2a002053b4d8 (bliver legacy content fra 31/03/2022)",
+                Criteria = "Når jeg ved hvorden de forskellige standard UI elementer fungerer.",
+                Evaluation = "Uge 9"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 4,
+                PlanGoal = "Lær hvordan man laver en interactiv UI i Unity",
+                Technique = "Youtube tutorials, Unity Documentation",
+                Criteria = "Når jeg har lavet en UI med flere menuer man kan skifte imellem, der hver især indeholder componenter",
+                Evaluation = "N/A"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 5,
+                PlanGoal = "Lær hvordan man laver componenter i Unity, og bruger dem (prefabs)",
+                Technique = "Youtube tutorials, Unity Documentation",
+                Criteria = "Når jeg kan lave componenter som der kan genbruges i flere situationer (lidt ligesom componenter i Blazor)",
+                Evaluation = "Mangler at skrives på bloggen"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 6,
+                PlanGoal = "Game Jam",
+                Technique = "Experiment",
+                Criteria = "Brug en weekend på at lave et lille spil.",
+                Evaluation = "Uge 10"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 7,
+                PlanGoal = "Lær basics om hvordan at physics virker i Unity",
+                Technique = "Youtube tutorials, Unity Documentation, Eksperimenter",
+                Criteria = "Når jeg kan lave et Unity program hvor at man benytter forskellige physics-relaterede elemter i.",
+                Evaluation = "Uge 10"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 8,
+                PlanGoal = "Lær hvordan Unity Coroutines virker",
+                Technique = "Youtube tutorials, Unity Documentation",
+                Criteria = "Når jeg kan benytte Unity Coroutines",
+                Evaluation = "N/A"
+            });
+        planUnity.Add(
+        new Goal()
+            {
+                Id = 9,
+                PlanGoal = "Lær hvordan man bruger Unity Networking",
+                Technique = "Youtube tutorials, Unity Documentation",
+                Criteria = "Når jeg kan skabe forbindelse og sende data mellem enheder på det samme netværk",
+                Evaluation = "I gang"
+            });
+
+
+        // Initialize the goal plan for Project Management
+        planProjectManagement = new();
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 1,
+                PlanGoal = "Onboarding",
+                Technique = "Erfaringer med produktgruppens nyeste medlemmer",
+                Criteria = "Når jeg kan forklare et onboarding forløb samt relevante teknikker/værktøjer i forløbet",
+                Evaluation = "Uge 8"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 2,
+                PlanGoal = "Product alignment",
+                Technique = "Erfaringer med produktgruppen",
+                Criteria = "Når jeg kan forklare omkring product alignment i forhold til vores forskellige delprodukter i produktgruppen",
+                Evaluation = "I gang"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 3,
+                PlanGoal = "Lær hvordan man opsætter en projektmodel",
+                Technique = "Gantt Chart, 'Strategisk Projektledelse' bog",
+                Criteria = "Når jeg i samarbejde med gruppen har fået opsat en god projektmodel, som kan bruges til at realisere vores produkt",
+                Evaluation = "Uge 6"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 4,
+                PlanGoal = "Lær hvordan man følger en projektmodel",
+                Technique = "Gantt Chart, 'Strategisk Projektledelse' bog",
+                Criteria = "Når jeg i samarbejde med gruppen har prøvet at følge vores projektmodel, og har fået erfaringer derfra",
+                Evaluation = "Arbejdes på igennem hele forløbet"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 5,
+                PlanGoal = "Lær hvad man gør når ens løsning ikke længere er den bedst egnede, og hvordan det påvirker projektet (der var en misforståelse med PO)",
+                Technique = "Experimenter",
+                Criteria = "Når jeg kan forklare hvordan man kan angribe situationen, og planlægge / redde resten af projektets forløb",
+                Evaluation = "I gang"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 6,
+                PlanGoal = "Teknologianalyse",
+                Technique = "Samtale med PO",
+                Criteria = "Når jeg kan forklare hvilke elementer en teknologianalyse kan indeholde, og hvordan den påvirker projektet",
+                Evaluation = "Mangler at skrives på bloggen"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 6,
+                PlanGoal = "Virksomhedsbesøg med fokus på projektstyring",
+                Technique = "Møde / samtale med Umbraco",
+                Criteria = "Når jeg har været ude og besøge en virksomhed og finde ud af hvordan de anvender projektstying, og kan sammenligne det med det vi / jeg har lært på datamatiker",
+                Evaluation = "Uge 13"
+            });
+        planProjectManagement.Add(
+        new Goal()
+            {
+                Id = 7,
+                PlanGoal = "Decision Matrix",
+                Technique = "Kilder",
+                Criteria = "Jeg når kan forklare hvade en DM er og kan anvende den",
+                Evaluation = "I gang"
+            });
+    }
+    }

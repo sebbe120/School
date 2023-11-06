@@ -1,0 +1,29 @@
+﻿@page "/projects"
+
+<PageTitle>Projects</PageTitle>
+
+<h3>Previous projects</h3>
+
+@if (dontLoad)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<div class="container">
+    <div class="row">
+        @foreach (var test in testList)
+        {
+            <ProjectCard></ProjectCard>
+        }
+    </div>
+</div>
+}
+
+@code {
+    bool dontLoad = false;
+    List<string> testList = new()
+        {
+            "1"
+        };
+}

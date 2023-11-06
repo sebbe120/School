@@ -1,0 +1,16 @@
+﻿<div class="col">
+    <div class="card" style="width: 300px; height: 400px; border-color: black">
+        <div class="card-body">
+            <h3>@Company</h3>
+            <a href="@CompanyLink" target="_blank"><img src="@ImgSrc" alt="A link to @Company" style="width: 266px; height: 300px"></a>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public string Company { get; set; } = "Innopixel";
+    public string CompanyLink { get; set; } = "http://innopixel.dk/";
+    public string ImgSrc { get; set; } = "";
+}

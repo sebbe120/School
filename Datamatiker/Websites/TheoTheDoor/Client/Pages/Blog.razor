@@ -1,0 +1,153 @@
+﻿@page "/blog"
+
+<PageTitle>Blog</PageTitle>
+
+@if (blogPosts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container" style="width: 50%">
+        @foreach (var blogPost in blogPosts)
+        {
+            <div class="row">
+                <div class="card" style="margin-bottom: 1.1rem; padding-left: 0px; padding-right: 0px">
+                    <div class="card-header">
+                        <h3>@blogPost.PostTitle</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            @((MarkupString)@blogPost.PostIntroduction)
+                        </p>
+
+                        @if (@blogPost.PostContentMonday != "")
+                        {
+                            <p>
+                                <b>Mandag:</b>
+                                <br>
+                                @((MarkupString)@blogPost.PostContentMonday)
+                            </p>
+                        }
+                        @if (@blogPost.PostContentTuesday != "")
+                        {
+                            <p>
+                                <b>Tirsdag:</b>
+                                <br>
+                                @((MarkupString)@blogPost.PostContentTuesday)
+                            </p>
+                        }
+                        @if (@blogPost.PostContentWednesday != "")
+                        {
+                            <p>
+                                <b>Onsdag:</b>
+                                <br>
+                                @((MarkupString)@blogPost.PostContentWednesday)
+                            </p>
+                        }
+                        @if (@blogPost.PostContentThursday != "")
+                        {
+                            <p>
+                                <b>Torsdag:</b>
+                                <br>
+                                @((MarkupString)@blogPost.PostContentThursday)
+                            </p>
+                        }
+                        @if (@blogPost.PostContentFriday != "")
+                        {                            
+                            <p>
+                                <b>Fredag:</b>
+                                <br>
+                                @((MarkupString)@blogPost.PostContentFriday)
+                            </p>
+                        }
+                    </div>
+
+                    <div class="card-footer" style="text-align: right">
+                        @blogPost.PostedDate
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    List<BlogPost>? blogPosts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        blogPosts = new();
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 1,
+                PostTitle = "Uge 5",
+                PostIntroduction = "Dette er mit første opslag, og starten på min nye hjemmeside. Denne hjemmeside skal være en portefølje, der beskriver mit 4. semester på datamatiker uddannelsen på UCL. Denne uge er primært gået med introduktion til semesteret og ny gruppedannelse. Jeg vil lave et opslag for hver uge i semesteret, og jeg vil nogle dage skrive specifikt hvad jeg lavede den dag. Mine to fag er Projektstyring og Unity og mine læringsmål kan ses i min læringsplan.",
+                PostedDate = new DateOnly(2022, 2, 4)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 2,
+                PostTitle = "Uge 6",
+                PostIntroduction = "I denne uge har jeg haft mit første guild møde inden for Projektstyring. Vi fik snakket lidt om begreberne onboarding og product alignment, som forresten også er ting jeg vil undersøge ifølge min projektplan. I produktgruppen har vi startet vores presprint, og er i gang med forskellige analyser, og har lavet vores projektplan for forløbet.",
+                PostContentTuesday = "I dag lavede vi en forventningsafstemning for at få skabt nogle faste rammer at arbejde efter. Vi fik også snakket om hvordan og hvorvidt vi skulle anvende Scrum i vores projekt.",
+                PostContentWednesday = "I dag fik vi lavet en projektplan som indeholder en masse forskellige projektstyrings elementer. Heri er der blandt andet risikovurdering interessantanalyse etc. En af de mere væsentlige ting vi lavede var selve planen for projektet. Vi delte hele vores projekt op i 4 faser: Analysefase, Udvikling af prototype, Test og færdiggørelse af produkt og til sidst Levering. Til dette har vi lavet et Gantt Chart som en visuel repræsentation af planen: <img src='Images/GanttChart.png' style='width: 100%' alt='Billede af Gantt Chart'>",
+                PostedDate = new DateOnly(2022, 2, 11)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 3,
+                PostTitle = "Uge 7",
+                PostIntroduction = "I denne uge har vi fortsat fra sidste uge lavet analyser og forberedelse til vores første sprint som begynder i næste uge. Ting vi har lavet er blandt andet: teknologianalyse, uddybet projektbeskrivelse, og overordnede systemudviklingsartefakter så som Domænemodel, DCD og database model.",
+                PostedDate = new DateOnly(2022, 2, 18)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 4,
+                PostTitle = "Uge 8",
+                PostIntroduction = "Denne uge er starten på vores første sprint. Vores projekt er inddelt i 3 underprojekter og vi har dermed delt gruppen op i 3 hold. Vi har lavet en overordnet Product Backlog, og vi har for hvert underprojekt lavet en tilhørende specifik Backlog, som hvert hold styrer.",
+                PostContentMonday = "I dag har vi haft et møde med PO, og jeg har i samarbejde med PO prøvet at få færdig-onboarded de nye medlemmer. Her laver vores gruppe præsentationer af os selv, og PO præsenterer også firmaet og snakker lidt om ham selv og de forskellige projekter de laver.",
+                PostedDate = new DateOnly(2022, 2, 25)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 5,
+                PostTitle = "Uge 9",
+                PostIntroduction = "Denne uge har gået med at",
+                PostedDate = new DateOnly(2022, 3, 4),
+                PostContentMonday = "Opstart på Unity projekt.",
+                PostContentTuesday = "Vi har fået sat main layout for Unity projektet op, og man kan skifte mellem de forskellige menuer vi har.",
+                PostContentWednesday = "Jeg brugte størstedelen af dagen på fikse min hjemmeside der var gået i stykker, men jeg fik også fulgt en tutorial omkring Unity UI elementer: <a href='https://learn.unity.com/tutorial/ui-components#5c7f8528edbc2a002053b4d8' target='_blank'>Link</a> (legacy content). Her lærte jeg omkring forskellige UI elementer så som knapper og textbokse, og hvilke componenter der er tilknyttet dem. Det var ikke svært at forstå de ting der blev forklaret, for vi har allerede erfaring med at lave UIs, for eksempel i Blazor.",
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 6,
+                PostTitle = "Uge 10",
+                PostIntroduction = "I denne uge har jeg lavet min egen udgave af spillet Snake. Her har jeg arbejdet med mange ting indenfor Unity. For eksemple så har jeg arbejdet med collision mellem objekter og tags. <img src='Images/SnakeCollision.png' style='width: 100%' alt='Billede af Snake med collision'> Som det kan ses på billedet bruger jeg en metode der hedder OnCollisionEnter, som er en indbygget Unity metode der automatisk bliver kaldt når to objekter med colliders koliderer. Man skal tilføje en RigidBody til et Unity Object og så får objektet en collider, som man så kan fortælle hvad den skal gøre når den koliderer med andre objekter. Jeg bruger så if statements til at checke hvilket tag som det er det objekt snaken støder ind i har, og hvis det enten er snaken selv eller en wall, så taber man spillet. Et andet eksempel på dette er når jeg skal spawne food som snaken skal spise: <img src='Images/SnakeFoodCollision.png' style='width: 100%' alt='Billede af Snake med collision'> Denne metode kaldes så kun når et objekt koliderer med dette food objekt. Her gør jeg så nogle andre ting, såsom at inkrementer scoren spille en lyd osv.",
+                PostedDate = new DateOnly(2022, 3, 11),
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 7,
+                PostTitle = "Uge 11",
+                PostIntroduction = "Denne uge har gået med at prøve at sætte et Unity projekt op til en API via HTTP requests. <img src='Images/GetLogs.png' style='width: 100%' alt='Billede af kodeeksempel med Get HTTP request'> Vi har haft store problemer med at få Unity til at connecte til en Blazor API. Unity bruger deres egen 'UnityWebRequest' til HTTP request, men det viser sig at det ikke er så nemt at bruge som man skulle tro. Der er ikke særlig meget dokumentation på dette da det er forholdsvist nyt, og fra hvad vi kunne se havde andre de samme problemer. Det ovenstående eksempel er en af de få requests vi fik til at virke, nemlig en Get request. Vi konkluderede at det ikke var umuligt at få alle requests til API'en sat op, men det ville tage en del tid, da vi blandt andet føler at det er lidt random om de virker eller ej. Hermed begyndte vi at kigge på andre løsninger som vil blive beskrevet i en senere blog.",
+                PostedDate = new DateOnly(2022, 3, 18)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 8,
+                PostTitle = "Uge 12",
+                PostIntroduction = "I denne uge har vi ændret vores løsning for projektet. Vi havde planlagt at vi skulle lave en website med en API, med kontakt til database, som skulle være centeret for vores løsning. På baggrund af problemerne vi stødte på med Unity og HTTP requests i sidste uge, valgte vi at lave om i løsningen. I stedet for at have kontrolpanelet på en website/server, så kører vi det lokalt på en pc hvor data også gemmes lokalt. Grunden til at vi ændrede løsningen var, at vi vurderede at vi hellere ville skære ned på projektet for at være sikre på, at vi kunne aflevere noget der virker til PO, selvom løsningen ikke kan så meget som den originale. Vi prioriterede et færdigt produkt der er mindre, fremfor et større produkt der ikke er sikkert at vi når at blive færdige med.",
+                PostedDate = new DateOnly(2022, 3, 25)
+            });
+        blogPosts.Add(new BlogPost()
+            {
+                PostId = 9,
+                PostTitle = "Uge 13",
+                PostIntroduction = "I denne uge har jeg arbejdet med noget frontend i Unity. Jeg har lavet en Video Player som man kan give en liste af videoer, og så vil den loope igennem listen og afspille dem. <img src='Images/PlayNextVideo.png' style='width: 100%' alt='Kodeeksempel på PlayNextVideo'> PlayNextVideo bliver kaldt hver gang at en video i Video Playeren er færdig. Jeg har en liste med paths til alle videoerne, og hver gang metoden kaldes incrementer den et index og derefter afspiller videoen fra listen med paths. Video Playeren er også sat op til at der kan tilføjes knapper som der afspiller bestemte videoer når de trykkes på. Dette er for at man kan have en liste med idle videos som kører af sig selv, men hvis man gerne vil have at users selv skal kunne afspille en video, så kan man tilføje knapperne til det. Jeg har lavet en Prefab for en knap, som der kan tilføjes hvis man vil afspille en video med user interactions. Jeg har hertil lavet en metode i backend, som det er der spawner knapperne ud fra hvor mange videoer der skal have knapper til. <img src='Images/AddButton.png' style='width: 100%' alt='Kodeeksempel på AddButton'> Først instantierer jeg knappen. Så sætter jeg knappens text til at være videofilens navn. og til sidst sætter jeg dens transform, hvilket i dette tilfælde er dens position i UI'en. En ting jeg fandt meget smart er linje 3 i metoden. Her bruger jeg et lambdaudtryk til at tilføje Video Playerens PlayButtonVideo metode til knappens OnClick event, med den path som videon har. Dette er smart fordi knappen så ikke kræver at have en reference / instans af min Video Player. <br><br> Jeg har også været på virksomhedsbesøg hos Umbraco med Projektstyirings/Projekledelses guilden. Her mødtes vi med en af deres teamleaders der fortalte om hvordan han styre de projekter han er med i. Han sagde at der ikke var noget rigtigt svar til hvilke metode og teknikker der er bedst, men han vælger blander lidt hvad de bruger fra forskellige steder. FX bruger de nogle ting fra Scrum så som Stand Up Meetings om morgenen. Den ting som han syntes var det vigtigste når det kommer til projektstyring er kommunikation (skriftligt og mundligt). Både indbyrdes i developer teamet og også med alle de andre parter såsom PO. Hvis ikke kommunikationen er i orden, så skrider projektet.",
+                PostedDate = new DateOnly(2022, 4, 1)
+            });
+        blogPosts = blogPosts.OrderByDescending(x => x.PostId).ToList();
+    }
+}
